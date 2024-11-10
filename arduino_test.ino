@@ -117,6 +117,19 @@ void loop() {
     buzzer = 0;
   }
 
+  if(seconds_counter < (SECONDS_IN_HOUR * 12))
+  { //morning
+    analogWrite(pwm_red, conf_red);
+    analogWrite(pwm_green, conf_green);
+    analogWrite(pwm_blue, conf_blue);
+  }
+  else
+  { //night
+    analogWrite(pwm_red, 0);
+    analogWrite(pwm_green, 0);
+    analogWrite(pwm_blue, 0);
+  }
+
   if(seconds_counter < (SECONDS_IN_HOUR * 24))
     seconds_counter++;
   else
@@ -124,9 +137,7 @@ void loop() {
 
   update_output();
 
-  analogWrite(pwm_red, conf_red);
-  analogWrite(pwm_green, conf_green);
-  analogWrite(pwm_blue, conf_blue);
+  
 
 	delay(1000);
 }
